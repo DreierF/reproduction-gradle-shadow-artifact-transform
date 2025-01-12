@@ -20,6 +20,10 @@ dependencies.registerTransform(CustomTransformAction::class) {
 	to.attributes.attribute(ArtifactTypeDefinition.ARTIFACT_TYPE_ATTRIBUTE, "jar").attribute(transformedAttribute, true)
 }
 
+tasks.shadowJar {
+  configurations = project.configurations.runtimeClasspath.map { listOf(it) }
+}
+
 configurations.runtimeClasspath {
 	attributes.attribute(transformedAttribute, true)
 }
